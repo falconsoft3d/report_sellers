@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="view_wizard_account_partner_balance" model="ir.ui.view">
+        <field name="name">wizard_account_partner_balance</field>
+        <field name="model">wizard.account.partner.balance</field>
+        <field name="arch" type="xml">
+            <form string="Detalle de Pagos">
+                <group>
+                    <field name="type_report" widget="radio"/>
+                    <field name="partner_id" attrs="{'invisible':[('type_report', '=', 'all')],'required':[('type_report', '=', 'one')]}"/>
+                </group>
+                <footer>
+                    <button name="print_report" string="Imprimir" type="object" class="oe_highlight" icon='fa-save' />
+                    or
+                    <button string="Cancelar" class="oe_link" special="cancel" icon='fa-times'/>
+                </footer>
+            </form>
+        </field>
+    </record>
+    
+    <record id="action_account_partner_balance" model="ir.actions.act_window">
+        <field name="name">Detalles de Pago</field>
+        <field name="type">ir.actions.act_window</field>
+        <field name="res_model">wizard.account.partner.balance</field>
+        <field name="view_type">form</field>
+        <field name="view_mode">form</field>
+        <field name="target">new</field>
+    </record>
+    
+    <menuitem 
+        id="menu_account_partner_balance" 
+        name="Detalles de Factura/Pagos"
+        action="action_account_partner_balance" 
+        parent="account.menu_finance_legal_statement" 
+        sequence="110"
+    />
+    
+     <act_window id="action_partner_partner_balance"
+            multi="True"
+            key2="client_action_multi" name="Detalles de Pago"
+            res_model="wizard.account.partner.balance" src_model="res.partner"
+            view_mode="form" target="new" view_type="form" />
+
+    <menuitem
+            id="wizard_user_a_wizard_menu"
+            action="action_partner_partner_balance"
+            parent="menu_debt_report"
+            sequence="50" name="Detalles de Factura/Pagos"
+           />
+
+</odoo>

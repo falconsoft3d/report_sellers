@@ -1,0 +1,41 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <data>
+        <record id="wizard_debt_report_day_view" model="ir.ui.view">
+            <field name="name">wizard.debt.report.day.wizard.view</field>
+            <field name="model">wizard.debt.report.day</field>
+            <field name="arch" type="xml">
+            <form string="Reporte">
+                <group>
+                  <group>
+                        <field name="report_date" required="1"/>
+                        <field name="type_report" required="1"/>
+                        <field name="detail" required="1"/>
+                    </group>
+                </group>
+                <footer>
+                    <button name="print_xls" string="Descargar" type="object" class="oe_highlight" icon='fa-save'/>
+                    <button string="Cancelar" class="oe_link" special="cancel" icon='fa-times'/>
+                </footer>
+            </form>
+            </field>
+        </record>
+
+        <record id="wizard_debt_report_day_wizard_action" model="ir.actions.act_window">
+            <field name="name">Reporte Cuentas</field>
+            <field name="type">ir.actions.act_window</field>
+            <field name="res_model">wizard.debt.report.day</field>
+            <field name="view_type">form</field>
+            <field name="view_mode">form</field>
+            <field name="target">new</field>
+        </record>
+
+        <menuitem
+            parent="menu_debt_report"
+            sequence="10" name="Saldos Vencidos por Días"
+            action="wizard_debt_report_day_wizard_action"
+            id="wizard_debt_report_day_wizard_menu"
+           />
+
+    </data>
+</odoo>
